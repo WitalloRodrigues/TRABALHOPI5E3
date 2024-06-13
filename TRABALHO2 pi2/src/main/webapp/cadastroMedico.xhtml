@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      lang="pt-br">
+
+  <h:head>
+   <link rel="stylesheet" type="text/css" href="https://educacaoonline.unifametro.edu.br/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://educacaoonline.unifametro.edu.br/theme/styles.php/moove/1695327658_1689597195/all" />
+    <title>Cadastro de Pacientes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <h:outputStylesheet library="css" name="yui-moodlesimple-min.css" />
+    <h:outputStylesheet library="css" name="all.css" />
+    <meta name="robots" content="noindex" />
+    <h:outputStylesheet name="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&amp;display=swap" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  	
+  	<style>
+  	 table,input,body .ui-button.ui-button-success, body .ui-splitbutton.ui-button-success > .ui-button {
+  			    width: 100%;
+ 			}
+  	</style>
+  	
+  </h:head>
+
+  <h:body id="page-login-index" class="format-site path-login chrome dir-ltr lang-pt_br yui-skin-sam yui3-skin-sam educacaoonline-unifametro-edu-br pagelayout-login course-1 context-1 notloggedin moove-login">
+    <div id="page-wrapper">
+      <div id="page" class="container-fluid mt-0">
+        <div id="page-content" class="row">
+          <div id="region-main-box" class="col-12">
+            <section id="region-main" class="col-12 h-100" aria-label="Conteúdo">
+              
+              <div class="login-wrapper">
+                <div class="login-container col-lg-12">
+                  <div role="main">
+                    <span id="maincontent"></span>
+                    
+                    
+                    <div class="loginform row hastwocolumns">
+                      <div class="col-lg-12 col-md-12 left-column">
+
+                        <div class="column-content">
+                        <h:outputText value="Olá, #{sessionUtils.getUsuarioLogado().nome}!" styleClass="welcome-text" rendered="#{sessionUtils.getUsuarioLogado().nome != null}"/><br/>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3>Formulario de Paciente</h3>
+                            
+                            <p:button value="Voltar" outcome="listaMedicos" icon="pi pi-arrow-left"  styleClass="p-button-danger" style="background: #ff2c2c;border-color:red"/>
+                            
+                            
+                        </div>
+                        <br/>
+                          <h:form id="cadastroMedicoForm" class="area-adm-form">
+                          
+        					<p:growl id="growl" showDetail="true" />
+        <p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />	
+                          		<p:panel columns="2" >
+						            
+
+						            
+						            <!-- Removido o h:inputHidden -->
+						            
+						            <p:outputLabel for="nome" value="Nome:" />
+						            
+						            <p:inputText id="nome" value="#{medicoBean.medico.nome}" required="true" />
+						            
+						            
+										<h:outputText value="(*) Campos Obrigatorios" />
+						            <p:commandButton value="Salvar" action="#{medicoBean.salvar}" update="@form" />
+						        </p:panel>
+						    </h:form>
+                        </div>
+                        <br/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </h:body>
+</html>

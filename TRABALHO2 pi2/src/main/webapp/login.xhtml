@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      lang="pt-br">
+
+  <h:head>
+   <link rel="stylesheet" type="text/css" href="https://educacaoonline.unifametro.edu.br/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://educacaoonline.unifametro.edu.br/theme/styles.php/moove/1695327658_1689597195/all" />
+    <title>UNIFAMETRO 2023: Acesso ao site</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <h:outputStylesheet library="css" name="yui-moodlesimple-min.css" />
+    <h:outputStylesheet library="css" name="all.css" />
+    <meta name="robots" content="noindex" />
+    <h:outputStylesheet name="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&amp;display=swap" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  	<style>
+  		body .ui-panel .ui-panel-content{
+  		max-height: 100%;
+  		background: #ffffff52;
+  		}
+  		body .ui-input-icon-left, body .ui-input-icon-right{
+  		width: 100% !important;
+  		}
+  	</style>
+  </h:head>
+
+  <h:body id="page-login-index" class="format-site path-login chrome dir-ltr lang-pt_br yui-skin-sam yui3-skin-sam educacaoonline-unifametro-edu-br pagelayout-login course-1 context-1 notloggedin moove-login">
+    <div id="page-wrapper" style="height: 100%;">
+      <div id="page" class="container-fluid mt-0 p-0"  style="height: 100%;">
+        <div id="page-content"  style="height: 100%;">
+              	
+                          <h:form id="loginForm2"  style="width: 100%; height: 100%;float: right;width: 30%;padding: 0;height: 100%;">
+	                          <p:panel style="height: 100%;">
+						        <p:panel  style="margin: 40% auto;background: white !important;
+  			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+						        <f:facet name="header" ><h3>Bem-vindo</h3><h5>Acesse sua conta!</h5></f:facet>
+						            <p:messages id="msgs" showDetail="false" closable="true" />
+						            <br/>
+						             <span class="ui-float-label">
+								       <p:inputText  value="#{loginBean.login}" style="width: 100%;" required="true"/>
+								       <p:outputLabel for="@previous" value="Login:"/>
+							   		</span>
+									<br/>
+						            <span class="ui-float-label" style="width: 100%;">
+								       <p:password  value="#{loginBean.senha}" style="width: 100%;" required="true" toggleMask="true" redisplay="true"/>
+								       <p:outputLabel for="@previous" value="Senha:"/>
+							   		</span>
+									
+						            <f:facet name="footer" >
+						            <div class="d-flex" style="justify-content: flex-end;align-items: center;gap: 5px">
+				                        <p:link value="Recuperar senha" outcome="recuperaTorcaSenha" style="text-color:red;color: #1a4a1a;text-decoration:underline;"/>
+						            </div>
+						            <div class="d-flex" style="justify-content: center;align-items: center;gap: 5px">
+						            <p:commandButton value="Entrar" styleClass="ui-button-outlined ui-button-success" action="#{loginBean.realizarLogin()}"  update="msgs" />
+						            </div>
+		            					
+				                    </f:facet>
+						        </p:panel>
+					        </p:panel>
+					    </h:form>
+        </div>
+      </div>
+    </div>
+  </h:body>
+</html>

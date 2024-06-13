@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+    <title>Lista de consultas</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    
+    
+    <h:form id="consultaTable">
+        <p:dataTable value="#{consultaBean.consultas}" var="consulta" editable="true" styleClass="ui-datatable-striped" paginator="true" rows="10" 
+        filteredValue="#{consultaBean.filteredPacientes}">>
+        
+            <p:column headerText="ID">
+            	<h:outputText value="#{consulta.id}" />
+                
+            </p:column>
+            <p:column headerText="Paciente" filterBy="#{consulta.agendamento.paciente.nome}" filterMatchMode="exact" filterOptions="#{consultaBean.statusOptions}">
+                <h:outputText value="#{consulta.agendamento.paciente.nome}" />
+            </p:column>
+            
+            <p:column headerText="Medico">
+                <h:outputText value="#{consulta.agendamento.medico.nome}" />
+            </p:column>
+            
+            <p:column headerText="Queixa Principal">
+            	<h:outputText value="#{consulta.queixaPrincipal}" />
+            </p:column>
+            
+            <p:column headerText="Diagnostico">
+            	<h:outputText value="#{consulta.diagnostico}" />
+            </p:column>
+            
+            <p:column>
+            	<p:commandButton value="Editar" action="#{consultaBean.consultar(consulta.agendamento)}" update=":consultaTable"/>
+                <p:commandButton value="Excluir" action="#{consultaBean.excluir(consulta)}" update=":consultaTable" />
+            </p:column>
+        </p:dataTable>
+        
+        <p:button value="Voltar" outcome="index" />
+    </h:form>
+</h:body>
+</html>

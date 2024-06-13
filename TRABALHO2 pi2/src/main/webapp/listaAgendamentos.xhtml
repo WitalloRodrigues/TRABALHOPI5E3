@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      lang="pt-br">
+
+  <h:head>
+   <link rel="stylesheet" type="text/css" href="https://educacaoonline.unifametro.edu.br/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://educacaoonline.unifametro.edu.br/theme/styles.php/moove/1695327658_1689597195/all" />
+    <title>Lista de Agendamentos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <h:outputStylesheet library="css" name="yui-moodlesimple-min.css" />
+    <h:outputStylesheet library="css" name="all.css" />
+    <meta name="robots" content="noindex" />
+    <h:outputStylesheet name="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&amp;display=swap" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  	<style>
+      @media (min-width: 768px) {
+	    #page-login-index .loginform.hastwocolumns {
+	        width: 100%;
+	            margin-top: 1%;
+	    }
+	}
+    </style>
+  </h:head>
+
+  <h:body id="page-login-index" class="format-site path-login chrome dir-ltr lang-pt_br yui-skin-sam yui3-skin-sam educacaoonline-unifametro-edu-br pagelayout-login course-1 context-1 notloggedin moove-login">
+    <div id="page-wrapper">
+      <div id="page" class="container-fluid mt-0">
+        <div id="page-content" class="row">
+          <div id="region-main-box" class="col-12">
+            <section id="region-main" class="col-12 h-100" aria-label="Conteúdo">
+              
+              <div class="login-wrapper">
+                <div class="login-container col-lg-12">
+                  <div role="main">
+                    <span id="maincontent"></span>
+                    
+                    
+                    <div class="loginform row hastwocolumns">
+                      <div class="col-lg-12 col-md-12 left-column">
+
+                        <div class="column-content">
+                        <h:outputText value="Olá, #{sessionUtils.getUsuarioLogado().nome}!" styleClass="welcome-text" rendered="#{sessionUtils.getUsuarioLogado().nome != null}"/><br/>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3>Lista de Agendamentos</h3>
+                            <div class="d-flex">
+	                            <p:button value="Novo Agendamento" outcome="cadastroAgendamento" icon="pi pi-plus" styleClass="p-button-success mr-3"/>
+	                            <p:commandButton value="Voltar" styleClass="ui-button-danger " icon="pi pi-arrow-left" action="#{loginBean.loggint()}"  />
+                            </div>
+                            
+                            
+                        </div>
+                        <br/>
+                          <h:form id="listarAgendamentosForm">
+						    
+						        <p:dataTable id="agendamentosTable" var="agendamento" value="#{agendamentoBean.agendamentos}" paginator="true" rows="3" 
+						                     filteredValue="#{agendamentoBean.filteredAgendamentos}">
+		
+									<p:column headerText="Id" style="widht:2px">
+						                <h:outputText value="#{agendamento.id}" />
+						            </p:column>
+						            <p:column headerText="Nome Paciente">
+						                <h:outputText value="#{agendamento.paciente.nome}" />
+						            </p:column>
+						            <p:column headerText="Status" filterBy="#{agendamento.status}" filterMatchMode="exact" filterOptions="#{agendamentoBean.statusOptions}">
+						                <h:outputText value="#{agendamento.status}" />
+						            </p:column>
+						            <p:column headerText="Clínica">
+						                <h:outputText value="#{agendamento.clinica}" />
+						            </p:column>
+						            <p:column headerText="Médico">
+						                <h:outputText value="#{agendamento.medico.nome}" />
+						            </p:column>
+						            <p:column headerText="Data Hora Agendamento">
+    <h:outputText value="#{agendamento.dataHoraAgendamento}">
+        <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+    </h:outputText>
+</p:column>
+
+						            <p:column headerText="Ações">
+						            	<div class="d-flex">
+							                <p:commandButton value="" action="#{agendamentoBean.editar(agendamento)}" update="listarAgendamentosForm" icon="pi pi-pencil" styleClass="mr-2" style="background: #d4e930;border-color:yellow" rendered="#{agendamento.status == 'AGENDADO' }"/>
+							                
+							                
+							                <p:commandButton value="" action="#{imcBean.imc(agendamento)}" rendered="#{agendamento.status != 'REALIZADO' and agendamento.status != 'CONSULTANDO' and agendamento.status != 'FINALIZADO'}" icon="pi pi-percentage" styleClass="mr-2" style="background: #9121ba;border-color:purple"/>
+							                <p:commandButton value="" action="#{consultaBean.consultar(agendamento)}" rendered="#{agendamento.status != 'AGENDADO' and agendamento.status != 'ATENDENDO' and agendamento.status != 'FINALIZADO'}" icon="pi pi-chart-bar" styleClass="mr-2" style="background: #21ba21;border-color:green"/>
+							                
+							                <p:commandButton value="" action="#{agendamentoBean.excluir(agendamento)}" update="agendamentosTable" icon="pi pi-trash" styleClass="mr-2" style="background: #ff2c2c;border-color:red" rendered="#{agendamento.status == 'AGENDADO' }"/>
+						            	</div>
+						            </p:column>
+						        </p:dataTable>
+						    </h:form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </h:body>
+</html>

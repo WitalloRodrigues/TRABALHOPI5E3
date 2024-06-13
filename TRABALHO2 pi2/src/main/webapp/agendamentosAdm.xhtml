@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Listar Agendamentos</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+    <h:form id="listarAgendamentosForm">
+        <h2>Listagem de Agendamentos</h2>
+        <p:button value="Area administrativa" outcome="areaAdm" />
+        <p:dataTable id="agendamentosTable" var="agendamento" value="#{agendamentoBean.agendamentos}" paginator="true" rows="10">
+            <p:column headerText="ID">
+                <h:outputText value="#{agendamento.id}" />
+            </p:column>
+            <p:column headerText="Nome Paciente">
+                <h:outputText value="#{agendamento.nomePaciente}" />
+            </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{agendamento.email}" />
+            </p:column>
+            <p:column headerText="Status">
+                <h:outputText value="#{agendamento.status}" />
+            </p:column>
+            <p:column headerText="Clínica">
+                <h:outputText value="#{agendamento.clinica}" />
+            </p:column>
+            <p:column headerText="Médico">
+                <h:outputText value="#{agendamento.medico.nome}" />
+            </p:column>
+            <p:column headerText="Data Hora Agendamento">
+                <h:outputText value="#{agendamento.dataHoraAgendamento}">
+                <f:convertDateTime pattern="dd/MM/yy HH:mm" />
+               	</h:outputText>
+            </p:column>
+            <p:column headerText="Data Cadastro">
+                <h:outputText value="#{agendamento.dataCadastro}" >
+                	<f:convertDateTime pattern="dd/MM/yy HH:mm" />
+               	</h:outputText>
+            </p:column>
+            <p:column headerText="Ações">
+            <p:commandButton value="Editar" action="#{agendamentoBean.editarAgendamentoAdm(agendamento)}" />
+            <p:commandButton value="Excluir" action="#{agendamentoBean.excluir(agendamento)}" update="agendamentosTable"/>
+            <p:commandButton value="Cancelar" action="#{agendamentoBean.cancelarAgendamento(agendamento)}" update="agendamentosTable"/>
+        </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

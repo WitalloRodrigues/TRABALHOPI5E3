@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Área Administrativa</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+    <h:form id="areaAdmForm" class="area-adm-form">
+        <h2>Área Administrativa</h2>
+        
+        <h:outputText value="Olá, #{sessionUtils.getUsuarioLogado().nome}!" styleClass="welcome-text"/><br/>
+
+         <p:panelGrid columns="2" styleClass="ui-fluid">
+            
+            <p:button value="Cadastrar paciente" outcome="cadastroPaciente" />
+            <p:button value="Lista de pacientes" outcome="listaPacientes" />
+            <p:button value="Cadastro de agendamento" outcome="cadastroAgendamento" />
+            <p:button value="Lista de agendamentos" outcome="listaAgendamentos" />
+            <p:button value="Imc´s" outcome="listaImcs" />
+            <p:button value="consultas" outcome="listaConsultas2" />
+            
+        </p:panelGrid>
+    </h:form>
+</h:body>
+</html>

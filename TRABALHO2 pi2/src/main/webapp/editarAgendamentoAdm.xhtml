@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Cadastro de Agendamento</title>
+</h:head>
+<h:body>
+
+    <h:form id="agendamentoForm">
+        <h2>Cadastro de Agendamento</h2>
+        
+        <p:panelGrid columns="2" styleClass="ui-fluid">
+            <p:outputLabel for="nomePaciente" value="Nome do Paciente:" />
+            <p:inputText id="nomePaciente" value="#{agendamentoBean.agendamento.nomePaciente}" required="true" />
+
+            <p:outputLabel for="email" value="Email:" />
+            <p:inputText id="email" value="#{agendamentoBean.agendamento.email}" required="true" />
+
+      
+
+            <p:outputLabel for="clinica" value="Clínica:" />
+            <p:selectOneMenu id="clinica" value="#{agendamentoBean.agendamento.clinica}">
+                <f:selectItem itemLabel="Clínica 1" itemValue="Clínica 1" />
+                <f:selectItem itemLabel="Clínica 2" itemValue="Clínica 2" />
+                <f:selectItem itemLabel="Clínica 3" itemValue="Clínica 3" />
+            </p:selectOneMenu>
+
+<p:outputLabel for="medico" value="Médico:" />
+<p:selectOneMenu id="medico" value="#{agendamentoBean.agendamento.medico}" converter="medicoConverter">
+    <f:selectItems value="#{agendamentoBean.medicos}" var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" />
+</p:selectOneMenu>
+
+            
+
+            <p:outputLabel for="dataHoraAgendamento" value="Data e Hora do Agendamento:" />
+            <p:calendar id="dataHoraAgendamento" value="#{agendamentoBean.agendamento.dataHoraAgendamento}" 
+                        showTime="true" pattern="dd/MM/yyyy HH:mm" required="true" />
+
+
+            <p:commandButton value="Salvar" action="#{agendamentoBean.salvar}" update="@form" />
+            <p:button value="Lista de agendamentos" outcome="agendamentosAdm" />
+        </p:panelGrid>
+    </h:form>
+</h:body>
+</html>
+

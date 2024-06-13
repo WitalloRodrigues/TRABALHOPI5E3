@@ -1,0 +1,29 @@
+@charset "ISO-8859-1";
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.login-form {
+    margin-top: -50px;
+}
+
+.area-adm-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-text {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.admin-button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Recuperação de Senha</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body class="login-body">
+    <h:form id="recuperaSenhaForm" class="login-form">
+        <p:panel header="Recuperação de Senha" style="width: 230px;">
+            <p:messages id="msgs" showDetail="false" closable="true" />
+            <p:outputLabel for="login" value="Login:" />
+            <br/>
+            <p:inputText id="login" value="#{loginBean.login}" style="width: 100%;" />
+            <br/>
+            <p:outputLabel for="nascimento" value="Data de nascimento:" />
+            <br/>
+            <p:calendar id="nascimento" value="#{loginBean.dataNascimento}" 
+        showButtonPanel="true" pattern="dd/MM/yyyy" style="width: 100%;" />
+<br/><br/>
+            <p:commandButton value="Recuperar Senha" action="#{loginBean.recuperarOuTrocarSenha}" update="msgs" style="width: 100%;" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
